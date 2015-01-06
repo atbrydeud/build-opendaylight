@@ -55,11 +55,11 @@ if [ "${DATESTAMP}" == "true" ]; then
 fi
 echo $SUFFIX
 
-for PROJECT in ${REPOSITORY_LIST}
-do
-  echo "Checking out ${PROJECT}"
-  git clone https://git.opendaylight.org/gerrit/p/${PROJECT}.git
-done
+# for PROJECT in ${REPOSITORY_LIST}
+# do
+#   echo "Checking out ${PROJECT}"
+#   git clone https://git.opendaylight.org/gerrit/p/${PROJECT}.git
+# done
 
 for PROJECT in ${REPOSITORY_LIST}
 do
