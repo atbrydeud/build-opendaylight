@@ -8,6 +8,7 @@ set -e -x
 
 CURRENT=`pwd`
 TRAIN_LABEL="Helium-POST-SR1"
+REPOSITORY_LIST="odlparent yangtools controller"
 
 rm -rf pom.xml .m2repo
 
@@ -42,6 +43,7 @@ cat <<EOF > pom-l2-dlux.xml
 </project>
 EOF
 
+cd src
 export SUFFIX=${TRAIN_LABEL}
 if [ "${NIGHTLY}" == "true" ]; then
    export DAY=`date +%d`
@@ -89,6 +91,7 @@ do
   cd -
 done
 
+cd ${CURRENT}
 cd src/odlparent
 mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo
 
