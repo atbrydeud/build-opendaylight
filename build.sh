@@ -6,6 +6,7 @@
 
 #
 # Notes: clean repo on each run
+#        e.g. rm -rf repo/;mkdir repo;cd repo; repo init -u https://github.com/inocybe/odl-manifest.git;repo sync
 #
 
 set -e -x
@@ -86,7 +87,7 @@ done
 for PROJECT in ${REPOSITORY_LIST}
 do
   cd ${PROJECT}
-  ./replaceDistMgmt.py ${PROJECT}
+  $CURRENT/replaceDistMgmt.py ${PROJECT}
   cd -
 done
 
