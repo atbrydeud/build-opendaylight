@@ -4,6 +4,10 @@
 # Opendaylight build script
 #
 
+#
+# Notes: clean repo on each run
+#
+
 set -e -x
 
 CURRENT=`pwd`
@@ -76,6 +80,13 @@ do
   cd ${PROJECT}
   git tag ${SUFFIX} -a -m "Autorelease tag for ${SUFFIX}"
   echo ${PROJECT} `git rev-parse --verify HEAD` ${SUFFIX} >> ../taglist
+  cd -
+done
+
+for PROJECT in ${REPOSITORY_LIST}
+do
+  cd ${PROJECT}
+  ./replaceDistMgmt.py ${PROJECT}
   cd -
 done
 
