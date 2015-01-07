@@ -62,7 +62,7 @@ def replaceDistMgmt(pomFile, root):
         print "Changed distributionManagement for :"+ root.find(getName('artifactId')).text
         print "at " + pomFile
     else:
-        #print "No distributionManagement to change for pom.xml of "+ root.find(getName('artifactId')).text
+        print "No distributionManagement to change for pom.xml of "+ root.find(getName('artifactId')).text
 
 def getName(tag):
     return '{'+XML_NAMESPACE+'}'+tag

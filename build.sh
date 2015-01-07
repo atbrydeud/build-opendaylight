@@ -62,17 +62,11 @@ echo $SUFFIX
 
 # for PROJECT in ${REPOSITORY_LIST}
 # do
-#   echo "Checking out ${PROJECT}"
-#   git clone https://git.opendaylight.org/gerrit/p/${PROJECT}.git
+#   echo "Checking out stable/helium for ${PROJECT}"
+#   cd ${PROJECT};
+#   git checkout stable/helium;
+#   cd -
 # done
-
-for PROJECT in ${REPOSITORY_LIST}
-do
-  echo "Checking out stable/helium for ${PROJECT}"
-  cd ${PROJECT};
-  git checkout stable/helium;
-  cd -
-done
 
 echo "complete cherry pick temp changes"
 
