@@ -100,19 +100,22 @@ done
 
 cd ${CURRENT}
 cd src/odlparent
-mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
+mvn clean install -DskipTests deploy
+# mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
 
 cd ${CURRENT}
 cd src/yangtools
-mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
+# mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
 
 cd ${CURRENT}
 cd src/controller
-mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
+# mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
 
-cd ${CURRENT}
-mvn clean install -f pom-l2-dlux.xml -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
+# cd ${CURRENT}
+# mvn clean install -f pom-l2-dlux.xml -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
 
 
-cd ${CURRENT}
-mvn clean install -f pom.xml -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
+# cd ${CURRENT}
+# mvn clean install -f pom.xml -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
