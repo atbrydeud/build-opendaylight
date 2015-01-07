@@ -20,16 +20,6 @@ def main() :
             for pomFile in files:
                 process(pomFile)
 
-    ## Testing ##
-    ## To be removed ##
-    # tree = ET.parse('test/test2/test3/pom.xml')
-    # files = findPoms('test')
-
-    # replaceDeps(tree)
-    # replaceDistMgmt(tree)
-    # replaceVersion(tree)
-    # tree.write('newpom.xml')
-
 def process(pomFile):
     print "Processing : " + pomFile
     try:
@@ -51,10 +41,10 @@ def process(pomFile):
             root = tree.getroot()
             os.remove('tempPomFile.xml')
 
-    replaceDistMgmt(root)
+    replaceDistMgmt(pomFile, root)
     tree.write(pomFile)
 
-def replaceDistMgmt(root):
+def replaceDistMgmt(pomFile, root):
     dist_mgmt = root.find("./"+getName('distributionManagement'))
     if dist_mgmt is not None:
         # print "tag : " + dist_mgmt.tag
@@ -69,10 +59,25 @@ def replaceDistMgmt(root):
         name_tag.text = 'repo.inocybe.com-releases'
         url_tag = ET.SubElement(rep_tag, getName('url'))
         url_tag.text = 'http://repo.inocybe.com/repository/libs-release-local'
+        print "Changed distributionManagement for :"+ root.find(getName('artifactId')).text
+        print "at " + pomFile
     else:
-        print "No distributionManagement to change for pom.xml of "+ root.find(getName('artifactId')).text
+        #print "No distributionManagement to change for pom.xml of "+ root.find(getName('artifactId')).text
+
+def getName(tag):
+    return '{'+XML_NAMESPACE+'}'+tag
+
+def findPoms(rootdir):
+    matches = []
+    for root, dirnames, filenames in os.walk(rootdir):
+        for filename in fnmatch.filter(filenames, 'pom.xml'):
+            matches.append(os.path.join(root, filename))
+    return matches
 
 def printUsage():
     print "Usage:"
     print "./release.py [directory]"
     print "directory is the root directory to search\n"
+
+if __name__ == "__main__":
+    main()
