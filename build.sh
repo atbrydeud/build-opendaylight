@@ -14,6 +14,7 @@ set -e -x
 CURRENT=`pwd`
 TRAIN_LABEL="Helium-POST-SR1"
 REPOSITORY_LIST="odlparent yangtools controller"
+DATESTAMP="true"
 
 rm -rf pom.xml .m2repo
 
