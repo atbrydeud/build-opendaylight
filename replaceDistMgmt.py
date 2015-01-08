@@ -42,6 +42,8 @@ def process(pomFile):
             os.remove('tempPomFile.xml')
 
     replaceDistMgmt(pomFile, root)
+    replaceRepositories(pomFile, root)
+    replacePluginRepositories(pomFile, root)
     tree.write(pomFile)
 
 def replaceDistMgmt(pomFile, root):
@@ -61,8 +63,88 @@ def replaceDistMgmt(pomFile, root):
         url_tag.text = 'http://repo.inocybe.com/repository/libs-release-local'
         print "Changed distributionManagement for :"+ root.find(getName('artifactId')).text
         print "at " + pomFile
-    else:
-        print "No distributionManagement to change for pom.xml of "+ root.find(getName('artifactId')).text
+    # else:
+    #     print "No distributionManagement to change for pom.xml of "+ root.find(getName('artifactId')).text
+
+def replaceRepositories(pomFile, root):
+    repositories = root.find("./"+getName('repositories'))
+    if repositories is not None:
+        for child in list(repositories):
+            repositories.remove(child)
+        # release
+        rel_rep_tag = ET.SubElement(repositories, getName('repository'))
+        rel_rel_tag = ET.SubElement(rel_rep_tag, getName('releases'))
+        rel_r_enabled_tag = ET.SubElement(rel_rel_tag, getName('enabled'))
+        rel_r_enabled_tag.text = 'true'
+        rel_snap_tag = ET.SubElement(rel_rep_tag, getName('snapshots'))
+        rel_s_enabled_tag = ET.SubElement(rel_snap_tag, getName('enabled'))
+        rel_s_enabled_tag.text = 'false'
+        rel_id_tag = ET.SubElement(rel_rep_tag, getName('id'))
+        rel_id_tag.text = 'repo.inocybe.com'
+        rel_name_tag = ET.SubElement(rel_rep_tag, getName('name'))
+        rel_name_tag.text = 'repo.inocybe.com-releases'
+        rel_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
+        rel_url_tag.text = 'http://repo.inocybe.com/repository/libs-release-local'
+
+        # snapshot
+        snp_rep_tag = ET.SubElement(repositories, getName('repository'))
+        snp_rel_tag = ET.SubElement(snp_rep_tag, getName('releases'))
+        snp_r_enabled_tag = ET.SubElement(snp_rel_tag, getName('enabled'))
+        snp_r_enabled_tag.text = 'false'
+        snp_snap_tag = ET.SubElement(snp_rep_tag, getName('snapshots'))
+        snp_s_enabled_tag = ET.SubElement(snp_snap_tag, getName('enabled'))
+        snp_s_enabled_tag.text = 'true'
+        snp_id_tag = ET.SubElement(snp_rep_tag, getName('id'))
+        snp_id_tag.text = 'repo.inocybe.com'
+        snp_name_tag = ET.SubElement(snp_rep_tag, getName('name'))
+        snp_name_tag.text = 'repo.inocybe.com-snapshots'
+        snp_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
+        snp_url_tag.text = 'http://repo.inocybe.com/repository/libs-snapshot-local'
+
+        print "Changed repositories for :"+ root.find(getName('artifactId')).text
+        print "at " + pomFile
+    # else:
+    #     print "No repositories to change for pom.xml of "+ root.find(getName('artifactId')).text
+
+def replacePluginRepositories(pomFile, root):
+    pluginRepositories = root.find("./"+getName('pluginRepositories'))
+    if pluginRepositories is not None:
+        for child in list(pluginRepositories):
+            pluginRepositories.remove(child)
+        # release
+        rel_rep_tag = ET.SubElement(pluginRepositories, getName('pluginRepository'))
+        rel_rel_tag = ET.SubElement(rel_rep_tag, getName('releases'))
+        rel_r_enabled_tag = ET.SubElement(rel_rel_tag, getName('enabled'))
+        rel_r_enabled_tag.text = 'true'
+        rel_snap_tag = ET.SubElement(rel_rep_tag, getName('snapshots'))
+        rel_s_enabled_tag = ET.SubElement(rel_snap_tag, getName('enabled'))
+        rel_s_enabled_tag.text = 'false'
+        rel_id_tag = ET.SubElement(rel_rep_tag, getName('id'))
+        rel_id_tag.text = 'repo.inocybe.com'
+        rel_name_tag = ET.SubElement(rel_rep_tag, getName('name'))
+        rel_name_tag.text = 'repo.inocybe.com-releases'
+        rel_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
+        rel_url_tag.text = 'http://repo.inocybe.com/repository/libs-release-local'
+
+        # snapshot
+        snp_rep_tag = ET.SubElement(pluginRepositories, getName('pluginRepository'))
+        snp_rel_tag = ET.SubElement(snp_rep_tag, getName('releases'))
+        snp_r_enabled_tag = ET.SubElement(snp_rel_tag, getName('enabled'))
+        snp_r_enabled_tag.text = 'false'
+        snp_snap_tag = ET.SubElement(snp_rep_tag, getName('snapshots'))
+        snp_s_enabled_tag = ET.SubElement(snp_snap_tag, getName('enabled'))
+        snp_s_enabled_tag.text = 'true'
+        snp_id_tag = ET.SubElement(snp_rep_tag, getName('id'))
+        snp_id_tag.text = 'repo.inocybe.com'
+        snp_name_tag = ET.SubElement(snp_rep_tag, getName('name'))
+        snp_name_tag.text = 'repo.inocybe.com-snapshots'
+        snp_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
+        snp_url_tag.text = 'http://repo.inocybe.com/repository/libs-snapshot-local'
+
+        print "Changed pluginRepositories for :"+ root.find(getName('artifactId')).text
+        print "at " + pomFile
+    # else:
+    #     print "No repositories to change for pom.xml of "+ root.find(getName('artifactId')).text
 
 def getName(tag):
     return '{'+XML_NAMESPACE+'}'+tag
