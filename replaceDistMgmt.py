@@ -98,7 +98,7 @@ def replaceRepositories(pomFile, root):
         snp_id_tag.text = 'repo.inocybe.com'
         snp_name_tag = ET.SubElement(snp_rep_tag, getName('name'))
         snp_name_tag.text = 'repo.inocybe.com-snapshots'
-        snp_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
+        snp_url_tag = ET.SubElement(snp_rep_tag, getName('url'))
         snp_url_tag.text = 'http://repo.inocybe.com/repository/libs-snapshot-local'
 
         print "Changed repositories for :"+ root.find(getName('artifactId')).text
@@ -138,7 +138,7 @@ def replacePluginRepositories(pomFile, root):
         snp_id_tag.text = 'repo.inocybe.com'
         snp_name_tag = ET.SubElement(snp_rep_tag, getName('name'))
         snp_name_tag.text = 'repo.inocybe.com-snapshots'
-        snp_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
+        snp_url_tag = ET.SubElement(snp_rep_tag, getName('url'))
         snp_url_tag.text = 'http://repo.inocybe.com/repository/libs-snapshot-local'
 
         print "Changed pluginRepositories for :"+ root.find(getName('artifactId')).text
