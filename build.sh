@@ -8,11 +8,12 @@
 # Notes: clean repo on each run
 #        e.g. rm -rf repo/;mkdir repo;cd repo; repo init -u https://github.com/inocybe/odl-manifest.git;repo sync
 #
+#        Requires settings.xml in $HOME/.m2 for interaction with repo.inocybe.com
 
 set -e -x
 
 CURRENT=`pwd`
-TRAIN_LABEL="Helium-POST-SR1"
+TRAIN_LABEL=$GO_PIPELINE_LABEL
 REPOSITORY_LIST="odlparent yangtools controller"
 DATESTAMP="true"
 
@@ -97,6 +98,10 @@ do
   git diff > ../patches/${PROJECT}.patch
   cd -
 done
+
+# Monkey patching for odl-features-service
+
+
 
 cd ${CURRENT}
 cd src/odlparent
