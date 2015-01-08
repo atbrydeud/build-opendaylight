@@ -80,7 +80,7 @@ def replaceRepositories(pomFile, root):
         rel_s_enabled_tag = ET.SubElement(rel_snap_tag, getName('enabled'))
         rel_s_enabled_tag.text = 'false'
         rel_id_tag = ET.SubElement(rel_rep_tag, getName('id'))
-        rel_id_tag.text = 'repo.inocybe.com'
+        rel_id_tag.text = 'repo.inocybe.com-releases'
         rel_name_tag = ET.SubElement(rel_rep_tag, getName('name'))
         rel_name_tag.text = 'repo.inocybe.com-releases'
         rel_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
@@ -95,7 +95,7 @@ def replaceRepositories(pomFile, root):
         snp_s_enabled_tag = ET.SubElement(snp_snap_tag, getName('enabled'))
         snp_s_enabled_tag.text = 'true'
         snp_id_tag = ET.SubElement(snp_rep_tag, getName('id'))
-        snp_id_tag.text = 'repo.inocybe.com'
+        snp_id_tag.text = 'repo.inocybe.com-snapshots'
         snp_name_tag = ET.SubElement(snp_rep_tag, getName('name'))
         snp_name_tag.text = 'repo.inocybe.com-snapshots'
         snp_url_tag = ET.SubElement(snp_rep_tag, getName('url'))
@@ -120,7 +120,7 @@ def replacePluginRepositories(pomFile, root):
         rel_s_enabled_tag = ET.SubElement(rel_snap_tag, getName('enabled'))
         rel_s_enabled_tag.text = 'false'
         rel_id_tag = ET.SubElement(rel_rep_tag, getName('id'))
-        rel_id_tag.text = 'repo.inocybe.com'
+        rel_id_tag.text = 'repo.inocybe.com-releases'
         rel_name_tag = ET.SubElement(rel_rep_tag, getName('name'))
         rel_name_tag.text = 'repo.inocybe.com-releases'
         rel_url_tag = ET.SubElement(rel_rep_tag, getName('url'))
@@ -135,7 +135,7 @@ def replacePluginRepositories(pomFile, root):
         snp_s_enabled_tag = ET.SubElement(snp_snap_tag, getName('enabled'))
         snp_s_enabled_tag.text = 'true'
         snp_id_tag = ET.SubElement(snp_rep_tag, getName('id'))
-        snp_id_tag.text = 'repo.inocybe.com'
+        snp_id_tag.text = 'repo.inocybe.com-snapshots'
         snp_name_tag = ET.SubElement(snp_rep_tag, getName('name'))
         snp_name_tag.text = 'repo.inocybe.com-snapshots'
         snp_url_tag = ET.SubElement(snp_rep_tag, getName('url'))
