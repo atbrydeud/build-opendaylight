@@ -87,8 +87,8 @@ do
   cd -
 done
 
-find . -type f -name "pom.xml" -exec perl -i -pe "s/SNAPSHOT/$SUFFIX/g" {} +
-find . -type f -name "features.xml" -exec perl -i -pe "s/SNAPSHOT/$SUFFIX/g" {} +
+# find . -type f -name "pom.xml" -exec perl -i -pe "s/SNAPSHOT/$SUFFIX/g" {} +
+# find . -type f -name "features.xml" -exec perl -i -pe "s/SNAPSHOT/$SUFFIX/g" {} +
 
 # Save the patches that differ from the commits in taglist
 mkdir -p patches
