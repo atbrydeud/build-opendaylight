@@ -110,12 +110,14 @@ mvn clean install -DskipTests deploy
 
 cd ${CURRENT}
 cd src/yangtools
-mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
+# mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
 # mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
 
 cd ${CURRENT}
 cd src/controller
-mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
+# mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
 # mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
 
 # cd ${CURRENT}
