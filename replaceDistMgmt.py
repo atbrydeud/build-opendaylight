@@ -78,7 +78,7 @@ def replaceRepositories(pomFile, root):
     repositories = root.find("./"+getName('repositories'))
     if repositories is not None:
         for child in list(repositories):
-            repositories.remove(child)
+            #repositories.remove(child)
         # release
         rel_rep_tag = ET.SubElement(repositories, getName('repository'))
         rel_rel_tag = ET.SubElement(rel_rep_tag, getName('releases'))
