@@ -49,6 +49,10 @@ def process(pomFile):
     replaceRepositories(pomFile, root)
     replacePluginRepositories(pomFile, root)
     tree.write(pomFile)
+    with open(pomFile, 'r') as fh:
+        new = [line.rstrip() for line in fh]
+        with open(pomFile, 'w') as fh:
+            [fh.write('%s\n' % line) for line in new]
 
 def replaceDistMgmt(pomFile, root):
     dist_mgmt = root.find("./"+getName('distributionManagement'))
