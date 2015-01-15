@@ -58,9 +58,9 @@ def replaceDistMgmt(pomFile, root):
         id_tag = ET.SubElement(rep_tag, getName('id'))
         id_tag.text = 'repo.inocybe.com'
         name_tag = ET.SubElement(rep_tag, getName('name'))
-        name_tag.text = 'repo.inocybe.com-releases'
+        name_tag.text = 'repo.inocybe.com-snapshots'
         url_tag = ET.SubElement(rep_tag, getName('url'))
-        url_tag.text = 'http://repo.inocybe.com/repository/libs-release-local'
+        url_tag.text = 'http://repo.inocybe.com/repository/libs-snapshot-local'
         print "Changed distributionManagement for :"+ root.find(getName('artifactId')).text
         print "at " + pomFile
     # else:
