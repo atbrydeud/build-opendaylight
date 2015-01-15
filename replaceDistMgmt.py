@@ -33,7 +33,7 @@ def process(pomFile):
             pomString = rPFile.read()
             linesToDiscard = 0
             for line in pomString.split('\n'):
-                if line[0] == "#":
+                if len(line) > 0 and line[0] == "#":
                     linesToDiscard += 1
             nPomString = '\n'.join(pomString.split('\n')[linesToDiscard:])
             # write string to a temporary file to get the tree
