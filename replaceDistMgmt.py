@@ -31,7 +31,11 @@ def process(pomFile):
         # as their first line
         with open (pomFile, "r") as rPFile:
             pomString = rPFile.read()
-            nPomString = '\n'.join(pomString.split('\n')[1:])
+            linesToDiscard = 0
+            for line in pomString.split('\n'):
+                if line[0] == "#":
+                    linesToDiscard += 1
+            nPomString = '\n'.join(pomString.split('\n')[linesToDiscard:])
             # write string to a temporary file to get the tree
             newPomFile = open ('tempPomFile.xml', 'w+')
             newPomFile.write(nPomString)
