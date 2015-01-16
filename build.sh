@@ -14,10 +14,11 @@ set -e -x
 
 CURRENT=`pwd`
 TRAIN_LABEL=$GO_PIPELINE_LABEL
-REPOSITORY_LIST="odlparent yangtools controller"
+REPOSITORY_LIST="odlparent yangtools controller openflowplugin openflowjava dlux l2switch"
 DATESTAMP="true"
 
 rm -rf pom.xml .m2repo
+rm -rf /var/go/.m2/repository/org/opendaylight
 
 cat << EOF > pom.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -119,6 +120,22 @@ cd src/controller
 mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
 # mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-release-local
 # mvn clean install -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
+
+cd ${CURRENT}
+cd src/openflowplugin
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
+
+cd ${CURRENT}
+cd src/openflowjava
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
+
+cd ${CURRENT}
+cd src/dlux
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
+
+cd ${CURRENT}
+cd src/l2switch
+mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
 
 # cd ${CURRENT}
 # mvn clean install -f pom-l2-dlux.xml -Dmaven.repo.local=$CURRENT/.m2repo -Dorg.ops4j.pax.url.mvn.localRepository=$CURRENT/.m2repo -DskipTests
