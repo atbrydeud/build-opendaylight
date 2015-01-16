@@ -131,6 +131,10 @@ mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com:
 
 cd ${CURRENT}
 cd src/dlux
+cd dlux-web
+npm install
+bower install
+cd ..
 mvn clean install -DskipTests deploy -DaltDeploymentRepository=repo.inocybe.com::default::http://repo.inocybe.com/repository/libs-snapshot-local
 
 cd ${CURRENT}
