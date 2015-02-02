@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import xml.etree.ElementTree as ET
+# from lxml import etree as ET #TODO change to lxml to keep comments
 import os
 import sys
 import fnmatch
